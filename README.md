@@ -1,36 +1,50 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# Deadline Guardian AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> Built for **Vibe2Ship** (Coding Ninjas × Google for Developers) — Problem Statement 1: *The Last-Minute Life Saver*
 
-Currently, two official plugins are available:
+An AI execution agent that doesn't just remind you about deadlines — it plans your path to them, watches your progress, and **autonomously replans your schedule** the moment life gets in the way.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## The Problem
 
-## React Compiler
+Reminders don't help people who are already behind. Deadline Guardian AI is built around a different idea: when you tell it a goal and a deadline, it should act like a coach who actually does the planning work — and re-does it instantly when something goes wrong.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How It Works
 
-## Expanding the Oxlint configuration
+1. **Onboarding** — You enter your profile (name, profession, daily hours available) and your first goal (title, deadline, notes).
+2. **Goal Analysis (Gemini)** — The app classifies the goal into a category (Software Project, Exam Prep, Hackathon Project, Job Search, etc.), then sends it to Gemini, which returns:
+   - A success probability (0–100%) and risk level
+   - Goal-specific reasoning for that score
+   - A full day-by-day task schedule from today to the deadline
+3. **Dashboard** — Tracks all active goals, today's tasks, and an AI-generated daily brief with priorities, warnings, and recovery suggestions.
+4. **Obstacle Reporting & Autonomous Replanning** — If something derails you (illness, extra work, a family event), you log it. Gemini re-evaluates your remaining time, recalculates your success probability, and generates a **new task schedule** — including explicit scope-reduction advice (e.g. "drop the analytics module, focus on core CRUD").
+5. **Offline-safe by design** — If no Gemini API key is configured, the app falls back to a deterministic local simulation engine that mirrors the same reasoning structure, so the product is always demoable.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Key Features
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- Goal creation with automatic category classification
+- AI-generated, goal-specific day-by-day task plans
+- Success probability & risk scoring with explainable reasoning
+- Obstacle logging with autonomous AI replanning (not just rescheduling — actual scope/strategy advice)
+- AI-generated daily brief (priorities, warnings, recovery suggestions, motivation)
+- Light/dark theme, fully client-side persistence (no login required)
+- Graceful local-simulation fallback when no API key is present
+
+## Tech Stack
+
+- React 19 + TypeScript + Vite
+- Google Gemini API (`@google/generative-ai`, `gemini-1.5-flash`) — structured JSON-mode responses for planning, replanning, and daily briefs
+- lucide-react for icons
+- Client-side persistence via localStorage (no backend required for this build)
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-=======
-# DGAI-Vibe2Ship-Hackathon
->>>>>>> a05c43595f35bff585ac3d70516e8288285ed436
+Add your Gemini API key in the in-app Settings panel, or set `VITE_GEMINI_API_KEY` in a `.env` file. Without a key, the app runs in local simulation mode automatically.
+
+## Deployment (Google Cloud Run)
+
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for step-by-step Cloud Run deployment instructions.
