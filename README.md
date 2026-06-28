@@ -45,6 +45,8 @@ npm run dev
 
 Add your Gemini API key in the in-app Settings panel, or set `VITE_GEMINI_API_KEY` in a `.env` file. Without a key, the app runs in local simulation mode automatically.
 
-## Deployment (Google Cloud Run)
+## Deployment (Firebase Hosting — Google Cloud)
 
-See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for step-by-step Cloud Run deployment instructions.
+Live at: **https://dgai-e1aaa.web.app**
+
+Auto-deployed via GitHub Actions on every push to `main` (see `.github/workflows/firebase-hosting-merge.yml`). See [`Deployment.md`](./Deployment.md) for manual deployment steps.
